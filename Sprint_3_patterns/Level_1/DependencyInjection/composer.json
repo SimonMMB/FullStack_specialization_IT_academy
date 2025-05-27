@@ -1,0 +1,15 @@
+{
+    "name": "simone/exercise_2",
+    "autoload": {
+        "psr-4": {
+            "Dependencies\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Simón Menendez Bravo",
+            "email": "menendezsimon@gmail.com"
+        }
+    ],
+    "require": {}
+}

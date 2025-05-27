@@ -1,0 +1,19 @@
+{
+  "provider_id": 1,
+  "name": "Ferreti",
+  "addresses":
+  [ 
+    {
+      "street": "Carrer de Provenza",
+      "number": "79",
+      "floor": "Entresuelo",
+      "door": "1",
+      "city": "Barcelona",
+      "postal_code": "08029",
+      "phone": "663092411",
+      "fax": "663092411",
+      "country": "España"
+    }
+  ],
+  "nif": "60344299G"
+}

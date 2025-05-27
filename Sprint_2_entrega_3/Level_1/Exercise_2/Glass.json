@@ -1,0 +1,20 @@
+{
+    "glass_id": 1,
+    "brand": "Ray-Ban",
+    "graduation_left": "-2.5",
+    "graduation_right": "-2.0",
+    "frame_type": "metalic",
+    "frame_color": "black",
+    "glass_color_left": "green",
+    "glass_color_right": "green",
+    "price": 120.50,
+    "provider_id": "ObjectId(xxxxxxx) -> Reference to a document of PROVIDER collection",
+    "provider_name": "Ferreti",
+    "buying_clients":
+    [
+        {
+            "client_id": "ObjectId(xxxxxxx) -> Reference to a document of CLIENT collection",
+            "client_name": "Ana Acosta"
+        }
+    ]
+}

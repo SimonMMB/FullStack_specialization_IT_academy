@@ -1,0 +1,147 @@
+body {
+    max-width: 1200px;
+    margin: auto;
+}
+header {
+    background-color: rgb(5, 0, 69);
+    margin: 20px;
+    padding: 20px;
+}
+.container1 {
+    display: flex;
+    flex-direction: row;
+    background: #0597ff;
+}
+.box1 {
+    flex: 1;
+    background: #90cdf8;
+    margin: 20px;
+    padding: 20px;
+    text-decoration:none;
+    color:black;
+}
+.box2 {
+    flex: 3;
+    background: #90cdf8;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-decoration:none;
+    color: black;
+}
+section {
+    background: #90cdf8;
+    margin-top: 20px;
+    padding: 20px;
+}
+h1 {
+    background: #c4e4fb;
+    margin: 0;
+    padding: 20px;
+}
+main {
+    display: flex;
+    flex-direction: rows;
+    background-color: rgb(5, 0, 69);
+    margin: 20px;
+    padding: 20px;
+}
+.container2 {
+    flex: 3;
+    background: #FEEE91;
+    margin-right: 20px;
+}
+.pairs-of-articles {
+    display: flex;
+    flex-direction: row;
+}
+.two_articles {
+    flex: 1;
+    padding: 20px;
+}
+article {
+    flex: 1;
+    background: #ffda09;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-decoration:none;
+}
+aside {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fcb773;
+}
+.container3 {
+    background: #FFBD73;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    text-decoration:none;
+    color: black;
+}
+.box4 {
+    text-decoration:none;
+    color: black;
+}
+.box5 {
+    background: #e79039;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration:none;
+    color: black;
+}
+footer {
+    background-color: rgb(5, 0, 69);
+    margin: 20px;
+    padding: 20px;
+}
+h4 {
+    background: #ca6806;
+    margin: 0;
+    padding: 20px;
+}
+@media (max-width: 800px) {
+    .container1 {
+        flex-direction: column;
+    }
+    .box2 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    main {
+        flex-direction: column;
+    }
+    .container2 {
+        flex: 1;
+        margin-right: 0px;
+    }
+    aside {
+        margin-top: 20px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .box5 {
+        margin: 20px;
+    }
+}
+@media (max-width: 428px) {
+    .pairs-of-articles {
+        flex-direction: column;
+    }
+    .two_articles {
+        padding: 0px;
+    }
+    article {
+        margin: 20px;
+    }
+    .box4 {
+        margin: 20px;
+    }
+}

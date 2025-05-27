@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Preconectar con los servidores de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Enlace a las fuentes Lobster, Phudu y Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Phudu:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- Enlace a Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <script>
+        // Función para verificar la longitud del nombre de usuario
+        function checkUsernameLength() {
+            var username = document.getElementById("username");
+            var message = document.getElementById("username-message");
+
+            // Si el texto excede los 15 caracteres, muestra el mensaje
+            if (username.value.length > 15) {
+                message.style.display = "block";
+            } else {
+                message.style.display = "none";
+            }
+        }
+
+        // Función para verificar la longitud de la descripción de la tarea
+        function checkTaskLength() {
+            var task = document.getElementById("task");
+            var message = document.getElementById("task-message");
+
+            // Si el texto excede los 140 caracteres, muestra el mensaje
+            if (task.value.length > 140) {
+                message.style.display = "block";
+            } else {
+                message.style.display = "none";
+            }
+        }
+
+        // Función para verificar las fechas
+        function checkDates() {
+            var startTime = document.getElementById("startTime").value;
+            var endTime = document.getElementById("endTime").value;
+            var message = document.getElementById("date-message");
+
+            // Si la fecha de fin es anterior a la de inicio, muestra el mensaje
+            if (startTime && endTime && new Date(endTime) < new Date(startTime)) {
+                message.style.display = "block";
+            } else {
+                message.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body class="bg-beige text-black flex flex-col min-h-screen p-6" style="background-color: #f5f5dc;">
+
+    <!-- Nombre de la App en Lobster arriba a la izquierda -->
+    <a href="menu">
+        <h1 class="text-3xl font-bold mb-4" style="font-family: 'Lobster', cursive;">Done & free! 🧃</h1>
+    </a>
+
+    <!-- Título con Phudu centrado -->
+    <h3 class="text-3xl font-extrabold text-center mb-4 uppercase" style="font-family: 'Phudu', sans-serif;">Nueva tarea</h3>
+
+    <!-- Formulario centrado con ancho más reducido -->
+    <div class="w-3/5 mx-auto flex-grow">
+        <form action="storeTask" method="POST" class="space-y-4">
+            <div>
+                <label for="username" class="block text-lg" style="font-family: 'Playfair Display', serif;">Nombre de Usuario</label>
+                <input type="text" id="username" name="username" maxlength="16" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black" oninput="checkUsernameLength()">
+                
+                <!-- Mensaje de advertencia para el nombre de usuario -->
+                <span id="username-message" class="text-red-500 text-sm mt-1" style="display: none;">El nombre de usuario debe tener 15 caracteres como máximo.</span>
+            </div>
+
+            <div>
+                <label for="task" class="block text-lg" style="font-family: 'Playfair Display', serif;">Descripción de la Tarea</label>
+                <textarea id="task" name="task" maxlength="141" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black" oninput="checkTaskLength()"></textarea>
+                
+                <!-- Mensaje de advertencia para la descripción -->
+                <span id="task-message" class="text-red-500 text-sm mt-1" style="display: none;">La descripción de la tarea debe tener 140 caracteres como máximo.</span>
+            </div>
+
+            <div>
+                <label for="status" class="block text-lg" style="font-family: 'Playfair Display', serif;">Estado</label>
+                <select id="status" name="status" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="enEjecucion">En ejecución</option>
+                    <option value="completa">Completada</option>
+                </select>
+            </div>
+
+            <!-- Fechas de inicio y fin alineadas horizontalmente -->
+            <div class="flex space-x-4">
+                <div class="w-1/2">
+                    <label for="startTime" class="block text-lg" style="font-family: 'Playfair Display', serif;">Inicio</label>
+                    <input type="datetime-local" id="startTime" name="startTime" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black" oninput="checkDates()">
+                </div>
+
+                <div class="w-1/2">
+                    <label for="endTime" class="block text-lg" style="font-family: 'Playfair Display', serif;">Fin</label>
+                    <input type="datetime-local" id="endTime" name="endTime" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black" oninput="checkDates()">
+                </div>
+            </div>
+
+            <!-- Mensaje de advertencia para las fechas -->
+            <span id="date-message" class="text-red-500 text-sm mt-1" style="display: none;">La fecha de fin no puede ser anterior a la fecha de inicio.</span>
+
+            <button type="submit" class="bg-black text-white p-2 rounded-lg mt-4 w-full text-center text-xl italic" style="font-family: 'Playfair Display', serif;">Agregar</button>
+        </form>
+    </div>
+</body>
+</html>

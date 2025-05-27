@@ -1,0 +1,12 @@
+{
+  "employee_id": 1,
+  "name": "Luciano Lopez",
+  "phone": "689250932",
+  "email": "lopezpedro@culdampolla.com",
+  "sales": 
+  [
+    {
+      "sale_id": "ObjectId(xxxxxxx) -> Reference to a document of SALE collection"
+    }
+  ]
+}

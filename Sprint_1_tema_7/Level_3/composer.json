@@ -1,0 +1,17 @@
+{
+    "name": "simone/level_3",
+    "autoload": {
+        "psr-4": {
+            "Simone\\Level3\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Simón Menendez Bravo",
+            "email": "menendezsimon@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    }
+}

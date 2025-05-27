@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+
+    <!-- Preconectar con los servidores de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Enlace a las fuentes Lobster, Phudu y Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Phudu:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- Enlace a Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-beige text-black flex flex-col min-h-screen p-6" style="background-color: #f5f5dc;">
+
+    <!-- Nombre de la App en Lobster arriba a la izquierda -->
+    <a href="menu">
+    <h1 class="text-3xl font-bold mb-4" style="font-family: 'Lobster', cursive;">Done & free! ☕</h1>
+    </a>
+
+    <!-- Título con Phudu centrado -->
+    <h3 class="text-3xl font-extrabold text-center mb-6 uppercase" style="font-family: 'Phudu', sans-serif;">Lista de Tareas</h3>
+
+    <!-- Tabla de tareas -->
+    <div class="w-3/4 overflow-x-auto mx-auto flex-grow">
+        <table class="table-auto w-full text-left border-collapse border border-black">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Usuario</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Descripción</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Estado</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Inicio</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Fin</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-center border border-black" style="font-family: 'Playfair Display', serif;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->tasks as $index => $task): ?>
+                    <tr class="border-b border-black">
+                        <td class="px-4 py-2 text-sm text-center border border-black" style="font-family: 'Playfair Display', serif;"><?= htmlspecialchars($task["username"]) ?></td>
+                        <td class="px-4 py-2 text-sm text-center border border-black" style="font-family: 'Playfair Display', serif;"><?= htmlspecialchars($task["task"]) ?></td>
+                        <td class="px-4 py-2 text-sm text-center border border-black" style="font-family: 'Playfair Display', serif;"><?= htmlspecialchars($task["status"]) ?></td>
+                        <td class="px-4 py-2 text-sm text-center border border-black" style="font-family: 'Playfair Display', serif;">
+                            <?php 
+                                $startTime = $task["startTime"];
+                                if (is_array($startTime) && isset($startTime['date'])) {
+                                    $startTime = $startTime['date']; // Extrae el string de fecha si es un array
+                                }
+                            ?>
+                            <?= date("d/m/Y H:i", strtotime($startTime)) ?>
+                        </td>
+                        <td class="px-4 py-2 text-sm text-center border border-black" style="font-family: 'Playfair Display', serif;">
+                            <?php 
+                                $endTime = $task["endTime"];
+                                if (is_array($endTime) && isset($endTime['date'])) {
+                                    $endTime = $endTime['date']; // Extrae el string de fecha si es un array
+                                }
+                            ?>
+                            <?= date("d/m/Y H:i", strtotime($endTime)) ?>
+                        </td>
+                        <td class="px-4 py-2 text-sm text-center border border-black">
+                            <div class="flex justify-center space-x-4">
+                                <a href="showtask?id=<?= $task['id'] ?>" class="text-black hover:underline italic" style="font-family: 'Playfair Display', serif;">Actualizar</a>
+                                <span class="mx-2">|</span> <!-- Barra vertical separando los links -->
+                                <a href="delete?id=<?= $task['id'] ?>" class="text-black hover:underline italic" style="font-family: 'Playfair Display', serif;">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer con opciones de tareas -->
+    <footer class="bg-black text-white w-full py-4 fixed bottom-0 left-0">
+        <div class="flex justify-center space-x-6">
+            <a href="create" class="text-lg hover:underline italic" style="font-family: 'Playfair Display', serif;">Agregar tarea</a>
+        </div>
+    </footer>
+
+</body>
+</html>

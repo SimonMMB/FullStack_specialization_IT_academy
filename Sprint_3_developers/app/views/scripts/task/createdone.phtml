@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Tareas</title>
+
+    <!-- Preconectar con los servidores de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Enlace a las fuentes Lobster, Phudu y Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Phudu:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- Enlace a Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-beige text-black flex flex-col min-h-screen p-6" style="background-color: #f5f5dc;">
+
+    <!-- Logo de la app y título -->
+    <a href="menu">
+    <h1 class="text-3xl font-bold mb-4" style="font-family: 'Lobster', cursive;">Done & free! 🍹</h1>
+    </a>
+
+    <!-- Título con Phudu centrado -->
+    <div class="flex flex-col items-center justify-center flex-grow">
+        <!-- Título con Phudu centrado -->
+        <h3 class="text-3xl font-extrabold text-center mb-4 uppercase" style="font-family: 'Phudu', sans-serif;">¡TAREA AGREGADA!</h3>
+    </div>
+
+    <footer class="bg-black text-white w-full py-4 fixed bottom-0 left-0">
+        <div class="flex justify-center space-x-6">
+        <a href="create" class="text-lg hover:underline italic" style="font-family: 'Playfair Display', serif;">Agregar tarea</a>
+        <a href="list" class="text-lg hover:underline italic" style="font-family: 'Playfair Display', serif;">Listar tareas</a>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+<?php
+    define("PERSISTENCE", "json");
+?>

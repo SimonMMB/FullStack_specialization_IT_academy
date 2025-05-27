@@ -1,0 +1,18 @@
+{
+  "client_id": 1,
+  "name": "Ana Acosta",
+  "address": 
+  {
+    "street": "Carrer de Corsega",
+    "number": "86",
+    "floor": "6",
+    "door": "3",
+    "city": "Barcelona",
+    "postal_code": "08030",
+    "country": "España"
+  },
+  "phone": "668562954",
+  "email": "acostaana@gmail.com",
+  "register_date": "ISODate(2025-01-30)",
+  "referred_by_client_id": "ObjectId(xxxxxxx) -> Reference to a document of CLIENT collection"
+}

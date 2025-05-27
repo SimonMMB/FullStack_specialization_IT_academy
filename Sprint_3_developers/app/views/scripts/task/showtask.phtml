@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Tarea</title>
+
+    <!-- Preconectar con los servidores de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Enlace a las fuentes Lobster, Phudu y Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Phudu:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- Enlace a Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const usernameField = document.getElementById("username");
+            const taskField = document.getElementById("task");
+            const startTimeField = document.getElementById("startTime");
+            const endTimeField = document.getElementById("endTime");
+
+            // Advertencia para el nombre de usuario
+            usernameField.addEventListener("input", function() {
+                const usernameMessage = document.getElementById("usernameMessage");
+                if (usernameField.value.length > 15) {
+                    usernameMessage.textContent = "El nombre de usuario debe tener 15 caracteres como máximo";
+                    usernameMessage.style.display = "block";
+                } else {
+                    usernameMessage.style.display = "none";
+                }
+            });
+
+            // Advertencia para la tarea
+            taskField.addEventListener("input", function() {
+                const taskMessage = document.getElementById("taskMessage");
+                if (taskField.value.length > 140) {
+                    taskMessage.textContent = "La descripción de la tarea debe tener 140 caracteres como máximo";
+                    taskMessage.style.display = "block";
+                } else {
+                    taskMessage.style.display = "none";
+                }
+            });
+
+            // Advertencia para las fechas
+            document.querySelector("form").addEventListener("submit", function(event) {
+                if (new Date(startTimeField.value) > new Date(endTimeField.value)) {
+                    event.preventDefault();
+                    alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                }
+            });
+        });
+    </script>
+</head>
+<body class="bg-beige text-black flex flex-col min-h-screen p-6" style="background-color: #f5f5dc;">
+
+    <!-- Nombre de la App en Lobster arriba a la izquierda -->
+    <a href="menu">
+        <h1 class="text-3xl font-bold mb-4" style="font-family: 'Lobster', cursive;">Done & free! 🧋</h1>
+    </a>
+
+    <!-- Título con Phudu centrado -->
+    <h3 class="text-3xl font-extrabold text-center mb-4 uppercase" style="font-family: 'Phudu', sans-serif;">Modificar Tarea</h3>
+
+    <!-- Formulario centrado con ancho más reducido -->
+    <div class="w-3/5 mx-auto flex-grow">
+        <form method="POST" action="update" class="space-y-4">
+            <input type="hidden" name="taskId" value="<?php echo htmlspecialchars($this->wantedTask['id'] ?? ''); ?>">
+
+            <div>
+                <label for="username" class="block text-lg" style="font-family: 'Playfair Display', serif;">Usuario:</label>
+                <input type="text" id="username" name="username" maxlength="16" value="<?php echo htmlspecialchars($this->wantedTask['username'] ?? ''); ?>" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                <div id="usernameMessage" class="text-red-500 text-sm mt-1" style="display: none;"></div>
+            </div>
+
+            <div>
+                <label for="task" class="block text-lg" style="font-family: 'Playfair Display', serif;">Tarea:</label>
+                <input type="text" id="task" name="task" maxlength="141" value="<?php echo htmlspecialchars($this->wantedTask['task'] ?? ''); ?>" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                <div id="taskMessage" class="text-red-500 text-sm mt-1" style="display: none;"></div>
+            </div>
+
+            <div>
+                <label for="status" class="block text-lg" style="font-family: 'Playfair Display', serif;">Estado:</label>
+                <select id="status" name="status" required class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                    <option value="pendiente" <?php echo ($this->wantedTask['status'] ?? '') === 'pendiente' ? 'selected' : ''; ?>>Pendiente</option>
+                    <option value="enEjecucion" <?php echo ($this->wantedTask['status'] ?? '') === 'enEjecucion' ? 'selected' : ''; ?>>En ejecución</option>
+                    <option value="completa" <?php echo ($this->wantedTask['status'] ?? '') === 'completa' ? 'selected' : ''; ?>>Completada</option>
+                </select>
+            </div>
+
+            <div class="flex space-x-4">
+                <div class="w-1/2">
+                    <label for="startTime" class="block text-lg" style="font-family: 'Playfair Display', serif;">Inicio</label>
+                    <input type="datetime-local" id="startTime" name="startTime" value="<?= isset($this->wantedTask['startTime']) ? date('Y-m-d\TH:i', strtotime($this->wantedTask['startTime']['date'] ?? '')) : '' ?>" class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                </div>
+
+                <div class="w-1/2">
+                    <label for="endTime" class="block text-lg" style="font-family: 'Playfair Display', serif;">Fin</label>
+                    <input type="datetime-local" id="endTime" name="endTime" value="<?= isset($this->wantedTask['endTime']) ? date('Y-m-d\TH:i', strtotime($this->wantedTask['endTime']['date'] ?? '')) : '' ?>" class="w-full p-3 border border-black rounded-sm mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-200 text-black">
+                </div>
+            </div>
+
+            <button type="submit" class="bg-black text-white p-2 rounded-lg mt-4 w-full text-center text-xl italic" style="font-family: 'Playfair Display', serif;">Actualizar</button>
+        </form>
+    </div>
+
+</body>
+</html>
